@@ -1,4 +1,4 @@
-import models.Bar;
+import models.Barn;
 import org.junit.Test;
 import play.data.Form;
 import play.libs.ws.WS;
@@ -20,7 +20,7 @@ public class ApplicationTest {
     public void indexTemplate() {
         running(fakeApplication(), new Runnable() {
             public void run() {
-                Form<Bar> form = Form.form(Bar.class);
+                Form<Barn> form = Form.form(Barn.class);
                 Html html = views.html.index.render(form);
                 assertThat(contentType(html)).isEqualTo("text/html");
                 assertThat(contentAsString(html)).contains("Welcome");
@@ -43,17 +43,17 @@ public class ApplicationTest {
             public void run() {
                 Map<String, String> formParams = new HashMap<String, String>();
                 formParams.put("name", "foo");
-                
+
                 FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);
-                
-                Result result = callAction(controllers.routes.ref.Application.addBar(), fakeRequest);
+
+                Result result = callAction(controllers.routes.ref.Application.addBarn(), fakeRequest);
                 assertThat(status(result)).isEqualTo(SEE_OTHER);
             }
         });
     }
 
     @Test
-    public void callListBars() {
+    public void callListBarns() {
         running(fakeApplication(), new Runnable() {
             public void run() {
                 Map<String, String> formParams = new HashMap<String, String>();
@@ -61,9 +61,9 @@ public class ApplicationTest {
 
                 FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);
 
-                callAction(controllers.routes.ref.Application.addBar(), fakeRequest);
-                
-                Result result = callAction(controllers.routes.ref.Application.listBars());
+                callAction(controllers.routes.ref.Application.addBarn(), fakeRequest);
+
+                Result result = callAction(controllers.routes.ref.Application.listBarns());
                 assertThat(status(result)).isEqualTo(OK);
                 assertThat(contentType(result)).isEqualTo("application/json");
                 assertThat(contentAsString(result)).startsWith("[");
@@ -73,20 +73,20 @@ public class ApplicationTest {
     }
 
     @Test
-    public void barsRoute() {
+    public void barnsRoute() {
         running(fakeApplication(), new Runnable() {
             public void run() {
-                Result result = route(fakeRequest(GET, "/bars"));
+                Result result = route(fakeRequest(GET, "/barns"));
                 assertThat(result).isNotNull();
             }
         });
     }
 
     @Test
-    public void realBarsRequest() {
+    public void realBarnsRequest() {
         running(testServer(3333), new Runnable() {
             public void run() {
-                assertThat(WS.url("http://localhost:3333/bars").get().get(5, TimeUnit.SECONDS).getStatus()).isEqualTo(OK);
+                assertThat(WS.url("http://localhost:3333/barns").get().get(5, TimeUnit.SECONDS).getStatus()).isEqualTo(OK);
             }
         });
     }

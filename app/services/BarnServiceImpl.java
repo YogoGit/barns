@@ -1,7 +1,7 @@
 package services;
 
 
-import models.Bar;
+import models.Barn;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import play.Logger;
@@ -13,20 +13,20 @@ import java.util.List;
 
 @Service
 @Transactional
-public class BarServiceImpl implements BarService {
+public class BarnServiceImpl implements BarnService {
 
     @PersistenceContext
     EntityManager em;
 
     @Override
-    public void addBar(Bar bar) {
+    public void addBarn(Barn bar) {
         em.persist(bar);
     }
 
     @Override
-    public List<Bar> getAllBars() {
-        CriteriaQuery<Bar> c = em.getCriteriaBuilder().createQuery(Bar.class);
-        c.from(Bar.class);
+    public List<Barn> getAllBarns() {
+        CriteriaQuery<Barn> c = em.getCriteriaBuilder().createQuery(Barn.class);
+        c.from(Barn.class);
         return em.createQuery(c).getResultList();
     }
 

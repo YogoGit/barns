@@ -1,15 +1,38 @@
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.ApplicationContext;
-import play.GlobalSettings;
-import play.Application;
-
 import configs.AppConfig;
 import configs.DataConfig;
-import play.Logger;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import play.Application;
+import play.GlobalSettings;
+import play.mvc.Action;
+import play.mvc.Http;
+
+/**
+ * Global setting with the Play Application.
+ *
+ * @author rlewan
+ *
+ */
 public class Global extends GlobalSettings {
 
+    private static final Logger logger = LoggerFactory.getLogger(Global.class);
+
     private ApplicationContext ctx;
+
+    /**
+     * Override here only to insert logging so we can see where the requests are going. Functionally does nothing more than call
+     * super.method
+     */
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Action onRequest(Http.Request request, java.lang.reflect.Method actionMethod) {
+        logger.info("Http request: " + request + " has calling method: " + actionMethod);
+        return super.onRequest(request, actionMethod);
+    }
 
     @Override
     public void onStart(Application app) {
@@ -22,3 +45,4 @@ public class Global extends GlobalSettings {
     }
 
 }
+

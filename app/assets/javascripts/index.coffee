@@ -1,4 +1,4 @@
 $ ->
-  $.get "/bars", (data) ->
+  $.get "/barns", (data) ->
     $.each data, (index, item) ->
-      $("#bars").append "<li>Bar " + item.name + "</li>"
+      $("#barns").append "<li>" + item.name + "</li>"

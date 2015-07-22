@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 public class TestDataConfig extends DataConfig {
-    
+
     @Bean
     @Override
     public DataSource dataSource() {
@@ -25,5 +25,5 @@ public class TestDataConfig extends DataConfig {
         dataSource.setUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
         return dataSource;
     }
-    
+
 }

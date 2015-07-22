@@ -1,12 +1,12 @@
 package services;
 
-import models.Bar;
+import models.Barn;
 
 import java.util.List;
 
-public interface BarService {
+public interface BarnService {
 
-    public void addBar(Bar bar);
-    public List<Bar> getAllBars();
-    
+    public void addBarn(Barn bar);
+    public List<Barn> getAllBarns();
+
 }

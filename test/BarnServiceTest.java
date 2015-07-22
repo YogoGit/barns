@@ -1,10 +1,10 @@
 import configs.AppConfig;
-import models.Bar;
+import models.Barn;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-import services.BarService;
+import services.BarnService;
 
 import java.util.List;
 
@@ -13,24 +13,24 @@ import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.running;
 
 @ContextConfiguration(classes={AppConfig.class, TestDataConfig.class})
-public class BarServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class BarnServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
-    private BarService barService;
+    private BarnService barnService;
 
     @Test
-    public void createBar() {
-        Bar bar = new Bar();
-        bar.name = "foo";
-        barService.addBar(bar);
-        assertThat(bar.id).isNotNull();
+    public void createBarn() {
+        Barn barn = new Barn();
+        barn.name = "Big Red Barn With Animals";
+        barnService.addBarn(barn);
+        assertThat(barn.id).isNotNull();
     }
 
     @Test
     public void getBars() {
-        createBar();
-        List<Bar> bars = barService.getAllBars();
-        assertThat(bars.size()).isEqualTo(1);
+        createBarn();
+        List<Barn> barns = barnService.getAllBarns();
+        assertThat(barns.size()).isEqualTo(1);
     }
 
 }
