@@ -1,19 +1,33 @@
 package models;
 
-import play.data.validation.Constraints;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity
+@Entity
 public class Product {
 
     @Id
     @GeneratedValue
-    public String id;
+    private String id;
 
-    @Constraints.Required(message = "The name is required")
-    public String name;
+    private String name;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
 }

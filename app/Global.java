@@ -12,7 +12,7 @@ import play.mvc.Action;
 import play.mvc.Http;
 
 /**
- * Global setting with the Play Application.
+ * Global settings with the Play Application.
  *
  * @author rlewan
  *

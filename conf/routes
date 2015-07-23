@@ -4,9 +4,12 @@
 
 # Home page
 GET     /                           @controllers.Application.index
-GET     /barns                       @controllers.Application.listBarns
-POST    /barns                       @controllers.Application.addBarn
-GET     /animals                    @controllers.Application.listAnimals
+GET     /barns                      @controllers.Barns.index
+GET     /barns/all                  @controllers.Barns.listBarns
+POST    /barns                      @controllers.Barns.addBarn
+GET     /animals                    @controllers.Animals.index
+GET     /animals/all               @controllers.Animals.listAnimals
+POST    /animal                     @controllers.Animals.addAnimal
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

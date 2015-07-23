@@ -16,4 +16,6 @@ libraryDependencies ++= Seq(
   "org.hibernate" % "hibernate-entitymanager" % "4.3.6.Final"
 )
 
+libraryDependencies += "org.webjars" % "bootstrap" % "2.1.1"
+
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
