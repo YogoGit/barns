@@ -1,5 +1,7 @@
 import configs.AppConfig;
 import models.Barn;
+import models.BarnForm;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -7,8 +9,10 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import services.BarnService;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.junit.Assert.assertFalse;
 import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.running;
 
@@ -20,16 +24,16 @@ public class BarnServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 
     @Test
     public void createBarn() {
-        Barn barn = new Barn();
-        barn.name = "Big Red Barn With Animals";
+        BarnForm barn = new BarnForm();
+        barn.setName("Big Red Barn With Animals");
         barnService.addBarn(barn);
-        assertThat(barn.id).isNotNull();
+        assertFalse(barnService.getAllBarns().isEmpty());
     }
 
     @Test
-    public void getBars() {
+    public void getBarns() {
         createBarn();
-        List<Barn> barns = barnService.getAllBarns();
+        Set<Barn> barns = barnService.getAllBarns();
         assertThat(barns.size()).isEqualTo(1);
     }
 

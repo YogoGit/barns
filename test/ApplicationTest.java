@@ -7,6 +7,7 @@ import play.test.FakeRequest;
 import play.twirl.api.Html;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -15,15 +16,16 @@ import static play.test.Helpers.*;
 
 // todo: not using the right spring context when using fakeApplication()
 public class ApplicationTest {
+    private static String APP_NAME = "Barn Management System";
 
     @Test
     public void indexTemplate() {
         running(fakeApplication(), new Runnable() {
             public void run() {
-                Form<Barn> form = Form.form(Barn.class);
-                Html html = views.html.index.render(form);
+                //Form<Barn> form = Form.form(Barn.class);
+                Html html = views.html.index.render(new HashSet());
                 assertThat(contentType(html)).isEqualTo("text/html");
-                assertThat(contentAsString(html)).contains("Welcome");
+                assertThat(contentAsString(html)).contains(APP_NAME);
             }
         });
     }
@@ -34,61 +36,7 @@ public class ApplicationTest {
         assertThat(status(result)).isEqualTo(OK);
         assertThat(contentType(result)).isEqualTo("text/html");
         assertThat(charset(result)).isEqualTo("utf-8");
-        assertThat(contentAsString(result)).contains("Welcome");
-    }
-
-    @Test
-    public void callAddBar() {
-        running(fakeApplication(), new Runnable() {
-            public void run() {
-                Map<String, String> formParams = new HashMap<String, String>();
-                formParams.put("name", "foo");
-
-                FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);
-
-                Result result = callAction(controllers.routes.ref.Application.addBarn(), fakeRequest);
-                assertThat(status(result)).isEqualTo(SEE_OTHER);
-            }
-        });
-    }
-
-    @Test
-    public void callListBarns() {
-        running(fakeApplication(), new Runnable() {
-            public void run() {
-                Map<String, String> formParams = new HashMap<String, String>();
-                formParams.put("name", "foo");
-
-                FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);
-
-                callAction(controllers.routes.ref.Application.addBarn(), fakeRequest);
-
-                Result result = callAction(controllers.routes.ref.Application.listBarns());
-                assertThat(status(result)).isEqualTo(OK);
-                assertThat(contentType(result)).isEqualTo("application/json");
-                assertThat(contentAsString(result)).startsWith("[");
-                assertThat(contentAsString(result)).contains("foo");
-            }
-        });
-    }
-
-    @Test
-    public void barnsRoute() {
-        running(fakeApplication(), new Runnable() {
-            public void run() {
-                Result result = route(fakeRequest(GET, "/barns"));
-                assertThat(result).isNotNull();
-            }
-        });
-    }
-
-    @Test
-    public void realBarnsRequest() {
-        running(testServer(3333), new Runnable() {
-            public void run() {
-                assertThat(WS.url("http://localhost:3333/barns").get().get(5, TimeUnit.SECONDS).getStatus()).isEqualTo(OK);
-            }
-        });
+        assertThat(contentAsString(result)).contains(APP_NAME);
     }
 
 }

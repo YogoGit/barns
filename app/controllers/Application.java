@@ -20,7 +20,7 @@ public class Application {
 
     public Result index() {
         Set<Barn> barns = barnService.getAllBarns();
-        return play.mvc.Controller.ok(index.render("Barn Management System", barns));
+        return play.mvc.Controller.ok(index.render(barns));
     }
 
 }

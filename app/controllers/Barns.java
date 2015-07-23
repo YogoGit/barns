@@ -31,7 +31,7 @@ public class Barns {
         Form<BarnForm> form = Form.form(BarnForm.class).bindFromRequest();
         BarnForm bar = form.get();
         barnService.addBarn(bar);
-        return play.mvc.Controller.redirect(controllers.routes.Application.index());
+        return play.mvc.Controller.redirect(controllers.routes.Barns.index());
     }
 
     public Result listBarns() {

@@ -7,13 +7,13 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import static org.fest.assertions.Assertions.assertThat;
 
 @ContextConfiguration(classes={AppConfig.class, TestDataConfig.class})
-public class BarnTest extends AbstractTransactionalJUnit4SpringContextTests {
- 
+public class BarnTest{
+
     @Test
-    public void setBarName() {
-        Barn bar = new Barn();
-        bar.name = "foo";
-        assertThat(bar.name).isEqualTo("foo");
+    public void setBarnName() {
+        Barn barn = new Barn();
+        barn.setName("foo");
+        assertThat(barn.getName()).isEqualTo("foo");
     }
 
 }

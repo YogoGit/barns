@@ -1,3 +1,9 @@
 body {
     padding-top: 50px;
 }
+br
+{
+    content: " " !important;
+    display: block !important;
+    margin:25px;
+}

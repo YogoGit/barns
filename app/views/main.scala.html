@@ -1,15 +1,28 @@
-@(title: String)(content: Html)
+@(content: Html)
 
 <!DOCTYPE html>
-
-<html>
-    <head>
-        <title>@title</title>
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.min.css")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
-    </head>
-    <body>
-        @content
-    </body>
-</html>
+@defining("Barn Management System") { title =>
+  <html>
+      <head>
+          <title>@title</title>
+          <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+          <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.min.css")">
+          <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+          <script src="@routes.Assets.at("javascripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
+      </head>
+      <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@routes.Application.index">@title</a></li>
+                        <li><a href="@routes.Barns.index">Add Barns</a></li>
+                        <li><a href="@routes.Animals.index">Add Animals</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+          @content
+      </body>
+  </html>
+}
