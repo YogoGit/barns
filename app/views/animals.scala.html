@@ -1,0 +1,14 @@
+@(form: play.data.Form[Animal])
+
+@main("Welcome to Play 2.0") {
+
+    <table id="animals"></table>
+
+
+
+    @helper.form(action = routes.Animals.addAnimal()) {
+        @helper.inputText(form("name"))
+        <input type="submit"/>
+    }
+
+}
