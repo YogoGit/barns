@@ -1,28 +1,18 @@
-import models.Barn;
+import static play.test.Helpers.fakeApplication;
+
 import org.junit.Test;
-import play.data.Form;
-import play.libs.ws.WS;
-import play.mvc.Result;
-import play.test.FakeRequest;
+
 import play.twirl.api.Html;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import static org.fest.assertions.Assertions.assertThat;
-import static play.test.Helpers.*;
 
 // todo: not using the right spring context when using fakeApplication()
 public class ApplicationTest {
-    private static String APP_NAME = "Barn Management System";
-
     @Test
     public void indexTemplate() {
         running(fakeApplication(), new Runnable() {
             public void run() {
-                //Form<Barn> form = Form.form(Barn.class);
+                // Form<Barn> form = Form.form(Barn.class);
                 Html html = views.html.index.render(new HashSet());
                 assertThat(contentType(html)).isEqualTo("text/html");
                 assertThat(contentAsString(html)).contains(APP_NAME);

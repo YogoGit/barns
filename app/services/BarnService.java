@@ -3,12 +3,16 @@ package services;
 import models.Barn;
 import models.BarnForm;
 
-import java.util.List;
+import play.libs.F.Promise;
+
 import java.util.Set;
 
 public interface BarnService {
 
-    public void addBarn(BarnForm bar);
+    public Integer addBarn(BarnForm bar);
+
     public Set<Barn> getAllBarns();
+
+    public Promise<Long> getValuation(Set<Barn> barns);
 
 }

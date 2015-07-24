@@ -1,9 +1,9 @@
-@(barns: Set[Barn])
+@(barns: Set[Barn], totalValue: Long)
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
 @main {
 
-  <div class="container">
+  <div class="container" align="left">
      <table class="table table-bordered">
         <tr>
           <th>Barn</th>
@@ -13,9 +13,11 @@
     @for(barn <- barns){
         <tr>
             <td> @barn.getName() </td>
-            <td> <i>Todo - list of animals</i> </td>
+            <td> @barn.getAnimalsAsString() </td>
           </tr>
     }
+
+    <label id="valuationLabel">Total Valuation of all Barns: @totalValue</label>
 
       </table>
   </div>

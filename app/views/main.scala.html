@@ -5,7 +5,7 @@
   <html>
       <head>
           <title>@title</title>
-          <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+          <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/barn.jpg")">
           <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.min.css")">
           <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
           <script src="@routes.Assets.at("javascripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
@@ -22,7 +22,11 @@
                 </div>
             </div>
         </div>
+        <div align=center>
+            &nbsp;&nbsp;<image src="@routes.Assets.at("images/barn.jpg")" alt="Red Barn in Sweden">
+
           @content
+        </div>
       </body>
   </html>
 }

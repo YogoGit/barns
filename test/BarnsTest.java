@@ -15,7 +15,6 @@ import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.*;
 
 public class BarnsTest {
-    private static String APP_NAME = "Barn Management System";
 
     @Test
     public void callAddBarn() {

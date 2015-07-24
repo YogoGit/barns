@@ -2,7 +2,8 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ public class Barn {
     // during JSON serialization!
     @OneToMany(mappedBy="barn", fetch=FetchType.EAGER)
     @JsonManagedReference
-    private List<Animal> animals;
+    private Set<Animal> animals;
 
     public Barn(){}
 
@@ -53,11 +54,21 @@ public class Barn {
         this.name = name;
     }
 
-    public List<Animal> getAnimals() {
+    public String getAnimalsAsString(){
+        if(animals == null || animals.size() == 0) {
+            return "";
+        }
+
+        return animals.stream()
+                        .map(Animal::getName)
+                        .collect(Collectors.joining(", "));
+    }
+
+    public Set<Animal> getAnimals() {
         return animals;
     }
 
-    public void setAnimals(List<Animal> animals) {
+    public void setAnimals(Set<Animal> animals) {
         this.animals = animals;
     }
 

@@ -7,6 +7,7 @@ public class AnimalForm {
     @Required(message = "You must enter an animal name.")
     private String name;
 
+    @Required(message = "You must specify a barn first.")
     private Integer barnId;
 
     public String getName() {

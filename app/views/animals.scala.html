@@ -12,15 +12,17 @@
         </div>
     }
 
-    <div class="unselected-field" style="display: inline-block;">
-        <label>Select a Barn (required):<p>&nbsp;&nbsp;<select id="barnsSelect"></select></p>
+    <div >
+        <label>Select a Barn:<p>&nbsp;&nbsp;<select id="barnsSelect"></select></p>
         </label>
     </div>​
 
     @helper.form(action = routes.Animals.addAnimal()) {
         @helper.inputText(form("barnId"), '_label -> "", 'style -> "display: none", 'id -> "barnIdInput")
         @helper.inputText(form("name"), '_label -> "Animal Name")
-        <input type="submit"/>
+        <div id="submitDiv">
+            <input id="animalSubmitButton" type="submit"/>
+        </div>
     }
 
 }

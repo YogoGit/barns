@@ -1,13 +1,16 @@
-import configs.AppConfig;
-import models.Barn;
-import org.junit.Test;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-
 import static org.fest.assertions.Assertions.assertThat;
 
-@ContextConfiguration(classes={AppConfig.class, TestDataConfig.class})
-public class BarnTest{
+import configs.AppConfig;
+
+import models.Barn;
+
+import org.junit.Test;
+import org.springframework.test.context.ContextConfiguration;
+
+@ContextConfiguration(classes = {
+    AppConfig.class, TestDataConfig.class
+})
+public class BarnTest {
 
     @Test
     public void setBarnName() {
