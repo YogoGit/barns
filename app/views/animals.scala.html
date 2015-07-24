@@ -4,17 +4,22 @@
 
     <script src="@routes.Assets.at("javascripts/animals.js")" type="text/javascript"></script>
 
-    <select id="barnsSelect">
+    @if(form.hasGlobalErrors){
+        <div class="alert alert-danger">
+            <p class="small">
+                <span class="error">@Messages(form.globalError.message)</span>
+            </p>
+        </div>
+    }
 
-    </select>
-
-    <table id="animals"></table>
-
-
+    <div class="unselected-field" style="display: inline-block;">
+        <label>Select a Barn (required):<p>&nbsp;&nbsp;<select id="barnsSelect"></select></p>
+        </label>
+    </div>​
 
     @helper.form(action = routes.Animals.addAnimal()) {
-        @helper.inputText(form("barnId"))
-        @helper.inputText(form("name"))
+        @helper.inputText(form("barnId"), '_label -> "", 'style -> "display: none", 'id -> "barnIdInput")
+        @helper.inputText(form("name"), '_label -> "Animal Name")
         <input type="submit"/>
     }
 

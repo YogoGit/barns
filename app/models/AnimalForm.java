@@ -1,7 +1,10 @@
 package models;
 
+import play.data.validation.Constraints.Required;
+
 public class AnimalForm {
 
+    @Required(message = "You must enter an animal name.")
     private String name;
 
     private Integer barnId;

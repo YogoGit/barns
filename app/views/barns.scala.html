@@ -2,8 +2,6 @@
 
 @main {
 
-    <script src="@routes.Assets.at("javascripts/index.js")" type="text/javascript"></script>
-
     @if(form.hasGlobalErrors){
         <div class="alert alert-danger">
             <p class="small">
@@ -11,13 +9,10 @@
             </p>
         </div>
     }
-    <p>Enter a new Barn:</p>
 
     @helper.form(action = routes.Barns.addBarn) {
-        @helper.inputText(form("name"))
+        @helper.inputText(form("name"), '_label -> "Enter name of new Barn:")
         <input type="submit"/>
     }
-
-    <br>
 
 }

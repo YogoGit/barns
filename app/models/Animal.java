@@ -1,5 +1,7 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ public class Animal {
 
     @ManyToOne
     @JoinColumn(name="barn_id")
+    @JsonBackReference
     private Barn barn;
 
     public Integer getId() {

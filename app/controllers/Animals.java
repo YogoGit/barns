@@ -27,7 +27,7 @@ public class Animals {
         animal.setName(formAnimal.getName());
         animal.setBarn(new Barn(formAnimal.getBarnId()));
         animalService.addAnimal(animal);
-        return play.mvc.Controller.redirect(controllers.routes.Animals.index());
+        return play.mvc.Controller.redirect(controllers.routes.Application.index());
     }
 
     public Result listAnimals(){
