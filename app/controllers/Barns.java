@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import play.data.Form;
 import play.libs.Json;
 import play.mvc.Result;
+import play.mvc.Controller;
 
 
 import services.BarnService;
@@ -29,9 +30,13 @@ public class Barns {
 
     public Result addBarn() {
         Form<BarnForm> form = Form.form(BarnForm.class).bindFromRequest();
-        BarnForm bar = form.get();
-        barnService.addBarn(bar);
-        return play.mvc.Controller.redirect(controllers.routes.Barns.index());
+        if (form.hasErrors()) {
+            return play.mvc.Controller.badRequest(barns.render(form));
+        }
+
+        BarnForm barn = form.get();
+        barnService.addBarn(barn);
+        return play.mvc.Controller.redirect(controllers.routes.Application.index());
     }
 
     public Result listBarns() {

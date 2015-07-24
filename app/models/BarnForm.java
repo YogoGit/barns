@@ -1,4 +1,7 @@
 package models;
+
+import play.data.validation.Constraints.Required;
+
 /**
  * Non-entity pojo for adding a Barn.
  *
@@ -7,6 +10,7 @@ package models;
  */
 public class BarnForm {
 
+    @Required(message = "Barn must have a name.")
     private String name;
 
     public String getName() {

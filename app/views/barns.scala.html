@@ -4,7 +4,14 @@
 
     <script src="@routes.Assets.at("javascripts/index.js")" type="text/javascript"></script>
 
-    <ul id="barns"></ul>
+    @if(form.hasGlobalErrors){
+        <div class="alert alert-danger">
+            <p class="small">
+                <span class="error">@Messages(form.globalError.message)</span>
+            </p>
+        </div>
+    }
+    <p>Enter a new Barn:</p>
 
     @helper.form(action = routes.Barns.addBarn) {
         @helper.inputText(form("name"))
