@@ -24,16 +24,13 @@ public class Application {
     @Autowired
     private BarnService barnService;
 
-    //public Promise<Result> index() {
-    public Promise<Long> index() {
+    public Promise<Result> index() {
         Set<Barn> barns = barnService.getAllBarns();
-//        Promise<Long> promise = barnService.getValuation(barns).map(value -> {
-//            //ok(index.render(album)));
-//            logger.info("Barn Valuation is: " + value);
-//            return value;
-//        });
-//        return play.mvc.Controller.ok(index.render(barns, 0l));
-        return barnService.getValuation(barns).map(value -> play.mvc.Controller.ok(index.render(barns, value)));
+        Promise<Result> promise = barnService.getValuation(barns).map(value -> {
+            logger.info("Barn Valuation is: " + value);
+            return play.mvc.Controller.ok(index.render(barns, value));
+        });
+        return promise;
     }
 
 }

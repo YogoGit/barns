@@ -1,10 +1,11 @@
   var http = require('http');
-
+  var agent = new http.Agent();
+  agent.maxSockets = 1;
   // request is an instance of http.IncomingMessage
   // response is an instance of http.ServerResponse
   var server = http.createServer(function (request, response) {
     console.log("Node request recieved");
-    if(request.method === "GET" || request.method === "POST") {
+    if(request.method === "POST") {
       var data = '';
 
       request.on('data', function (chunk) {
@@ -12,6 +13,7 @@
       });
    
       var jsonObject;
+      // When the request is ended, we can run our calculation and write the response.
       request.on('end', function(){
         jsonObject = JSON.parse(data);
         var result  = calculateBarnsValue(jsonObject);
@@ -19,7 +21,16 @@
       	response.writeHead(200, { 'Content-Type': 'application/json' });
         response.write(JSON.stringify(result));
         response.end();
-      }); 
+      });
+      // Set a connection timeout to close the socket.
+      request.on('socket', function (socket) {
+        myTimeout = 500; // millis
+        socket.setTimeout(myTimeout);  
+        socket.on('timeout', function() {
+            console.log("Timeout, aborting request")
+            request.abort();
+        });
+      });
     }
   });
   server.listen(9055);
