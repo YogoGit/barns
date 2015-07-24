@@ -2,6 +2,7 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,19 +18,25 @@ public class Barn {
     @Id
     @Column(name="barn_id")
     @GeneratedValue
-    private Integer id;
+    private Integer barnId;
 
     private String name;
 
-    @OneToMany(mappedBy="barn", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="barn", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Animal> animals;
 
-    public Integer getId() {
-        return id;
+    public Barn(){}
+
+    public Barn(Integer id){
+        this.barnId = id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getBarnId() {
+        return barnId;
+    }
+
+    public void setBarnId(Integer id) {
+        this.barnId = id;
     }
 
     public String getName() {
