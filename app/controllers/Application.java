@@ -35,7 +35,7 @@ public class Application {
     public Promise<Result> index() {
         Set<Barn> barns = barnService.getAllBarns();
         Promise<Result> promise = barnService.getValuation(barns).map(value -> {
-            logger.info("Barn Valuation is: " + value);
+            logger.info("Barn Valuation is {}", value);
             return ok(index.render(barns, value));
         });
         return promise;
