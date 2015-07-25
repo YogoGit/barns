@@ -29,7 +29,7 @@ public class Global extends GlobalSettings {
     @SuppressWarnings("rawtypes")
     @Override
     public Action onRequest(Http.Request request, java.lang.reflect.Method actionMethod) {
-        logger.info("Http request: " + request + " has calling method: " + actionMethod);
+        logger.info("Http request {} has calling method {} ", request, actionMethod.toString().split(" ")[2]);
         return super.onRequest(request, actionMethod);
     }
 

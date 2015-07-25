@@ -1,0 +1,16 @@
+Setting up the MySQL DB:
+------------------------
+CREATE DATABASE barns;
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
+CREATE USER 'test'@'%' IDENTIFIED BY 'test';
+GRANT ALL PRIVILEGES ON barns.* TO 'test'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON barns.* TO 'test'@'%' WITH GRANT OPTION;
+
+Running the node.js http server
+-------------------------------
+1. Make sure you have node.js installed on your computer.
+    $ brew install node
+    (OR download from https://nodejs.org/download/)
+2. Run the barnHttp.js
+    $ node barnHttp.js
+
