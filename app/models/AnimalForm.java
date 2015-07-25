@@ -2,6 +2,13 @@ package models;
 
 import play.data.validation.Constraints.Required;
 
+/**
+ * AnimalForm is used to pass Animal form data specifically
+ * so that the @Entity object is not used, for security.
+ *
+ * @author rlewan
+ *
+ */
 public class AnimalForm {
 
     @Required(message = "You must enter an animal name.")

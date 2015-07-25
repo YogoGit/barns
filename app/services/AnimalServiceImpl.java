@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,13 +27,14 @@ public class AnimalServiceImpl implements AnimalService{
     @Override
     public void addAnimal(Animal a) {
         em.persist(a);
+        logger.trace("Added animal {}", a.toString());
     }
 
     @Override
-    public List<Animal> getAllAnimals() {
+    public Set<Animal> getAllAnimals() {
         CriteriaQuery<Animal> c = em.getCriteriaBuilder().createQuery(Animal.class);
         c.from(Animal.class);
-        return em.createQuery(c).getResultList();
+        return new HashSet<Animal>(em.createQuery(c).getResultList());
     }
 
     @Override

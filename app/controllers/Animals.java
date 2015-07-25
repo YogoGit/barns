@@ -14,7 +14,7 @@ import play.data.Form;
 import play.libs.Json;
 import play.mvc.Result;
 
-import views.html.animals;
+import java.util.Set;
 
 @org.springframework.stereotype.Controller
 public class Animals {
@@ -31,7 +31,8 @@ public class Animals {
     public Result addAnimal(){
         Form<AnimalForm> form = Form.form(AnimalForm.class).bindFromRequest();
         if (form.hasErrors()) {
-            return play.mvc.Controller.badRequest(animals.render(form));
+            logger.debug("Attempt to addAdminal form with errors.");
+            return play.mvc.Controller.badRequest(views.html.animals.render(form));
         }
         AnimalForm formAnimal = form.get();
         Animal animal = new Animal();
@@ -42,6 +43,8 @@ public class Animals {
     }
 
     public Result listAnimals(){
-        return play.mvc.Controller.ok(Json.toJson(animalService.getAllAnimals()));
+        Set<Animal> animals = animalService.getAllAnimals();
+        logger.trace("listAnimals() called. list = {}", animals.toString());
+        return play.mvc.Controller.ok(Json.toJson(animals));
     }
 }

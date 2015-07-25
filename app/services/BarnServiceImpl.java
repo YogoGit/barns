@@ -27,6 +27,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
+/**
+ * BarnServiceImpl does some basic fetch & create for Barn
+ * Entity and also posts Barns data as JSON to a node.js
+ * http server to fetch the barns' valuation.
+ *
+ * @author rlewan
+ *
+ */
 @Service
 @Transactional
 public class BarnServiceImpl implements BarnService {
@@ -52,16 +60,17 @@ public class BarnServiceImpl implements BarnService {
         CriteriaQuery<Barn> c = em.getCriteriaBuilder().createQuery(Barn.class);
         c.from(Barn.class);
         List<Barn> barns = em.createQuery(c).getResultList();
-//        if(barns == null || barns.isEmpty()){
-//            return new HashSet<Barn>();
-//        }
         return new HashSet<Barn>(barns);
     }
 
+    /**
+     * Asynchronous call to http server that runs an algorithm on the barns
+     * to calculate their overall valuation.
+     */
     @Override
     public Promise<Long> getValuation(Set<Barn> barns) {
         if(barns == null || barns.size() == 0){
-            return Promise.pure(0l);
+            return Promise.pure(0L);
         }
         JsonNode barnsJson = Json.toJson(barns);
         Promise<Long> result = WS.url(NODE_SERVICE_URL).post(barnsJson).map(response -> {

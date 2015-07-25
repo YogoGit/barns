@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
-import java.util.List;
+import java.util.Set;
 
 @ContextConfiguration(classes = {
     AppConfig.class, TestDataConfig.class
@@ -49,7 +49,7 @@ public class AnimalServiceTest extends AbstractTransactionalJUnit4SpringContextT
     @Test
     public void getAnimals() {
         createAnimal();
-        List<Animal> animals = animalService.getAllAnimals();
+        Set<Animal> animals = animalService.getAllAnimals();
         assertThat(animals.size()).isEqualTo(1);
     }
 

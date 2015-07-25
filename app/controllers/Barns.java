@@ -31,9 +31,9 @@ public class Barns {
     public Result addBarn() {
         Form<BarnForm> form = Form.form(BarnForm.class).bindFromRequest();
         if (form.hasErrors()) {
+            logger.debug("addBarn form submitted with errors.");
             return play.mvc.Controller.badRequest(barns.render(form));
         }
-
         BarnForm barn = form.get();
         barnService.addBarn(barn);
         return play.mvc.Controller.redirect(controllers.routes.Application.index());
@@ -41,7 +41,7 @@ public class Barns {
 
     public Result listBarns() {
         Set<Barn> barns = barnService.getAllBarns();
-        logger.info("listBarns() List of all barns: " + barns.toString());
+        logger.trace("listBarns() List of all barns: {}", barns.toString());
         return play.mvc.Controller.ok(Json.toJson(barns));
     }
 

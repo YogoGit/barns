@@ -23,9 +23,8 @@ public class Global extends GlobalSettings {
 
     private ApplicationContext ctx;
 
-    /**
-     * Override here only to insert logging so we can see where the requests are going. Functionally does nothing more than call
-     * super.method
+    /*
+     * Override here only to insert logging so we can see where the requests are going.
      */
     @SuppressWarnings("rawtypes")
     @Override
