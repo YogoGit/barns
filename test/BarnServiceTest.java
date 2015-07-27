@@ -15,7 +15,9 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 
 import java.util.Set;
 
-@ContextConfiguration(classes={AppConfig.class, TestDataConfig.class})
+@ContextConfiguration(classes = {
+    AppConfig.class, TestDataConfig.class
+})
 public class BarnServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired

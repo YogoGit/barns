@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Animal {
 
     @Id
-    @Column(name="animal_id")
+    @Column(name = "animal_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -25,7 +25,7 @@ public class Animal {
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name="barn_id")
+    @JoinColumn(name = "barn_id")
     @JsonBackReference
     private Barn barn;
 

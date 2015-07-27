@@ -1,18 +1,26 @@
+import static org.fest.assertions.Assertions.assertThat;
+import static play.mvc.Http.Status.OK;
+import static play.mvc.Http.Status.SEE_OTHER;
+import static play.test.Helpers.GET;
+import static play.test.Helpers.callAction;
+import static play.test.Helpers.contentAsString;
+import static play.test.Helpers.contentType;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.fakeRequest;
+import static play.test.Helpers.route;
+import static play.test.Helpers.running;
+import static play.test.Helpers.status;
+import static play.test.Helpers.testServer;
+
 import org.junit.Test;
-import models.Barn;
-import play.data.Form;
+
 import play.libs.ws.WS;
 import play.mvc.Result;
 import play.test.FakeRequest;
-import play.twirl.api.Html;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static org.fest.assertions.Assertions.assertThat;
-import static play.test.Helpers.*;
 
 public class BarnsTest {
 

@@ -28,7 +28,7 @@ public class Animals {
         return play.mvc.Controller.ok(views.html.animals.render(Form.form(AnimalForm.class)));
     }
 
-    public Result addAnimal(){
+    public Result addAnimal() {
         Form<AnimalForm> form = Form.form(AnimalForm.class).bindFromRequest();
         if (form.hasErrors()) {
             logger.debug("Attempt to addAdminal form with errors.");
@@ -43,7 +43,7 @@ public class Animals {
         return play.mvc.Controller.redirect(controllers.routes.Application.index());
     }
 
-    public Result listAnimals(){
+    public Result listAnimals() {
         Set<Animal> animals = animalService.getAllAnimals();
         logger.trace("listAnimals() called. list = {}", animals.toString());
         return play.mvc.Controller.ok(Json.toJson(animals));

@@ -1,6 +1,5 @@
 package services;
 
-
 import models.Animal;
 import models.Barn;
 import models.BarnForm;
@@ -24,9 +23,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
 /**
- * BarnServiceImpl does some basic fetch & create for Barn
- * Entity and also posts Barns data as JSON to a node.js
- * http server to fetch the barns' valuation.
+ * BarnServiceImpl does some basic fetch & create for Barn Entity and also posts Barns data as JSON to a node.js http server to
+ * fetch the barns' valuation.
  *
  * @author rlewan
  *
@@ -42,7 +40,7 @@ public class BarnServiceImpl implements BarnService {
     EntityManager em;
 
     @Override
-    public Integer addBarn(BarnForm barn){
+    public Integer addBarn(BarnForm barn) {
         Barn b = new Barn();
         b.setName(barn.getName());
         b.setAnimals(new HashSet<Animal>());
@@ -60,12 +58,11 @@ public class BarnServiceImpl implements BarnService {
     }
 
     /**
-     * Asynchronous call to http server that runs an algorithm on the barns
-     * to calculate their overall valuation.
+     * Asynchronous call to http server that runs an algorithm on the barns to calculate their overall valuation.
      */
     @Override
     public Promise<Long> getValuation(Set<Barn> barns) {
-        if(barns == null || barns.size() == 0){
+        if (barns == null || barns.size() == 0) {
             return Promise.pure(0L);
         }
         JsonNode barnsJson = Json.toJson(barns);

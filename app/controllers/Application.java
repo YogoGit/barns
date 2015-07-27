@@ -26,9 +26,8 @@ public class Application {
     private BarnService barnService;
 
     /**
-     * Index is the entrypoint for this application. It loads all the Barns
-     * in the DB and also calls a node.js webservice (via barnService) to
-     * determine the valuation of the Barns.
+     * Index is the entrypoint for this application. It loads all the Barns in the DB and also calls a node.js webservice (via
+     * barnService) to determine the valuation of the Barns.
      *
      * @return Result of the index render, given as Promise<Result> due to async.
      */

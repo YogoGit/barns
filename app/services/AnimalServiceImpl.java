@@ -16,7 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 @Service
 @Transactional
-public class AnimalServiceImpl implements AnimalService{
+public class AnimalServiceImpl implements AnimalService {
 
     private static final Logger logger = LoggerFactory.getLogger(AnimalServiceImpl.class);
 

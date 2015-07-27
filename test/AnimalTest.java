@@ -9,7 +9,7 @@ import org.junit.Test;
 public class AnimalTest {
 
     @Test
-    public void testEntityObject(){
+    public void testEntityObject() {
 
         Animal a = new Animal();
         a.setName("Donkey");

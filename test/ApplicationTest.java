@@ -1,18 +1,12 @@
-import org.junit.Test;
-import play.data.Form;
-import play.libs.ws.WS;
-import play.mvc.Result;
-import play.test.FakeRequest;
-import play.twirl.api.Html;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import static org.fest.assertions.Assertions.assertThat;
-import static play.test.Helpers.*;
+import static play.test.Helpers.contentAsString;
+import static play.test.Helpers.contentType;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.running;
 
-import models.Barn;
+import org.junit.Test;
+
+import play.twirl.api.Html;
 
 import java.util.HashSet;
 

@@ -12,7 +12,6 @@ import play.libs.Json;
 import play.mvc.Result;
 import play.mvc.Controller;
 
-
 import services.BarnService;
 import views.html.barns;
 

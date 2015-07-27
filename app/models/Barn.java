@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Barn {
 
     @Id
-    @Column(name="barn_id")
+    @Column(name = "barn_id")
     @GeneratedValue
     private Integer barnId;
 
@@ -28,13 +28,13 @@ public class Barn {
     // @JsonManagedReference for Parent and @JsonBackReference for Child (See Animal.java).
     // If you don't do this, the Jackson databinding with cause an infinite recursion
     // during JSON serialization!
-    @OneToMany(mappedBy="barn", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "barn", fetch = FetchType.EAGER)
     @JsonManagedReference
     private Set<Animal> animals;
 
-    public Barn(){}
+    public Barn() {}
 
-    public Barn(Integer id){
+    public Barn(Integer id) {
         this.barnId = id;
     }
 
@@ -54,14 +54,14 @@ public class Barn {
         this.name = name;
     }
 
-    public String getAnimalsAsString(){
-        if(animals == null || animals.size() == 0) {
+    public String getAnimalsAsString() {
+        if (animals == null || animals.size() == 0) {
             return "";
         }
 
         return animals.stream()
-                        .map(Animal::toString)
-                        .collect(Collectors.joining(", "));
+                      .map(Animal::toString)
+                      .collect(Collectors.joining(", "));
     }
 
     public Set<Animal> getAnimals() {
