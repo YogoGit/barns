@@ -17,6 +17,9 @@ public class AnimalForm {
     @Required(message = "You must specify a barn first.")
     private Integer barnId;
 
+    @Required(message = "You must enter a quantity.")
+    private Integer quantity;
+
     public String getName() {
         return name;
     }
@@ -31,6 +34,14 @@ public class AnimalForm {
 
     public void setBarnId(Integer barnId) {
         this.barnId = barnId;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
 }

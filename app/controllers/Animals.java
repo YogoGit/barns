@@ -37,6 +37,7 @@ public class Animals {
         AnimalForm formAnimal = form.get();
         Animal animal = new Animal();
         animal.setName(formAnimal.getName());
+        animal.setQuantity(formAnimal.getQuantity());
         animal.setBarn(new Barn(formAnimal.getBarnId()));
         animalService.addAnimal(animal);
         return play.mvc.Controller.redirect(controllers.routes.Application.index());

@@ -60,7 +60,7 @@ public class Barn {
         }
 
         return animals.stream()
-                        .map(Animal::getName)
+                        .map(Animal::toString)
                         .collect(Collectors.joining(", "));
     }
 

@@ -5,10 +5,7 @@ import models.Animal;
 import models.Barn;
 import models.BarnForm;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import play.libs.F.Promise;
 import play.libs.Json;
 import play.libs.ws.WS;
-import play.libs.ws.WSResponse;
 
 import java.util.HashSet;
 import java.util.List;

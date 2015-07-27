@@ -32,6 +32,7 @@ public class AnimalServiceTest extends AbstractTransactionalJUnit4SpringContextT
     public void createAnimal() {
         Animal animal = new Animal();
         animal.setName("Donkey");
+        animal.setQuantity(5);
         // Associate the animal with a Barn.
         Integer barnId = createBarn();
         animal.setBarn(new Barn(barnId));

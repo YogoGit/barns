@@ -28,6 +28,7 @@ public class AnimalsTest {
             public void run() {
                 Map<String, String> formParams = new HashMap<String, String>();
                 formParams.put("name", "Donkey");
+                formParams.put("quantity", "5");
                 formParams.put("barnId", "1");
 
                 FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);

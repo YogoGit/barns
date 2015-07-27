@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+<testsuite name="barn appraiser" errors="0" tests="7" failures="0" time="0" timestamp="2015-07-26T21:14:09">
+  <testcase classname="barn appraiser" name="should return a value of 0 for an empty list of barns" time="0"></testcase>
+  <testcase classname="barn appraiser" name="should return totalAnimals of 0 for an empty list of barns" time="0"></testcase>
+  <testcase classname="barn appraiser" name="should return a value of 50000 for one barn and no animals" time="0"></testcase>
+  <testcase classname="barn appraiser" name="should return a value of 51400 for one barn with 2 chickens" time="0"></testcase>
+  <testcase classname="barn appraiser" name="should return totalAnimals of 2 for one barn with 2 chickens" time="0"></testcase>
+  <testcase classname="barn appraiser" name="should return a value of 107525 for two barns, one with 2 chickens and another with 7 donkeys" time="0"></testcase>
+  <testcase classname="barn appraiser" name="should return totalAnimals of 9 for two barns with 2 chickens and 7 donkeys" time="0"></testcase>
+</testsuite>
+</testsuites>

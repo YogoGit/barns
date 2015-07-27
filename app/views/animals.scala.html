@@ -19,7 +19,8 @@
 
     @helper.form(action = routes.Animals.addAnimal()) {
         @helper.inputText(form("barnId"), '_label -> "", 'style -> "display: none", 'id -> "barnIdInput")
-        @helper.inputText(form("name"), '_label -> "Animal Name")
+        @helper.inputText(form("name"), '_label -> "Animal Name", 'placeholder -> "ie. Donkey, Goat, etc", 'id -> "nameInput")
+        @helper.inputText(form("quantity"), '_label -> "Quantity (any number > 0)", 'id -> "quantityInput")
         <div id="submitDiv">
             <input id="animalSubmitButton" type="submit"/>
         </div>

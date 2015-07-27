@@ -22,6 +22,8 @@ public class Animal {
 
     private String name;
 
+    private int quantity;
+
     @ManyToOne
     @JoinColumn(name="barn_id")
     @JsonBackReference
@@ -51,6 +53,14 @@ public class Animal {
         this.barn = barn;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int count) {
+        this.quantity = count;
+    }
+
     @Override
     public int hashCode() {
         return name.hashCode();
@@ -63,7 +73,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return name;
+        return name + "(" + quantity + ")";
     }
 
 }

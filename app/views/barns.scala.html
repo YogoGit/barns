@@ -1,6 +1,11 @@
 @(form: play.data.Form[BarnForm])
 
 @main {
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        $('input[id=nameInput]').focus();
+      });
+    </script>
 
     @if(form.hasGlobalErrors){
         <div class="alert alert-danger">
@@ -11,7 +16,7 @@
     }
 
     @helper.form(action = routes.Barns.addBarn) {
-        @helper.inputText(form("name"), '_label -> "Enter name of new Barn:")
+        @helper.inputText(form("name"), '_label -> "Enter name of new Barn:", 'id -> "nameInput")
         <input type="submit"/>
     }
 

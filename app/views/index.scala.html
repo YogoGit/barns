@@ -2,7 +2,7 @@
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
 @main {
-
+  <br />
   <div class="container" align="left">
      <table class="table table-bordered">
         <tr>
@@ -17,9 +17,17 @@
           </tr>
     }
 
-    <label id="valuationLabel">Total Valuation of all Barns: @totalValue</label>
 
       </table>
+
+      <script type="text/javascript">
+        // Correctly format the barn valuation number as money.
+        $( document ).ready(function() {
+           var totVal = new Intl.NumberFormat().format(@totalValue);
+           $("#valuationLabel").text("Total Valuation of all Barns: $" + totVal + ".00");
+        });
+      </script>
+      <label id="valuationLabel"></label>
   </div>
 
 
