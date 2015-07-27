@@ -1,24 +1,22 @@
 package controllers;
 
 import models.Barn;
-import models.BarnForm;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import play.data.Form;
-import play.libs.F.Promise;
-import play.libs.Json;
-import play.mvc.Result;
-import static play.mvc.Controller.ok;
-
-import java.util.Set;
 
 import services.BarnService;
 import views.html.index;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import play.libs.F.Promise;
+import play.mvc.Controller;
+import play.mvc.Result;
+
+import java.util.Set;
+
 @org.springframework.stereotype.Controller
-public class Application {
+public class Application extends Controller {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 

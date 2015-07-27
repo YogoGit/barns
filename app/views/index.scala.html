@@ -10,26 +10,23 @@
           <th>Animals</th>
         </tr>
 
-    @for(barn <- barns){
+    @for(barn <- barns) {
         <tr>
             <td> @barn.getName() </td>
             <td> @barn.getAnimalsAsString() </td>
           </tr>
     }
 
-
       </table>
 
       <script type="text/javascript">
         // Correctly format the barn valuation number as money.
-        $( document ).ready(function() {
+        $(document).ready(function() {
            var totVal = new Intl.NumberFormat().format(@totalValue);
            $("#valuationLabel").text("Total Valuation of all Barns: $" + totVal + ".00");
         });
       </script>
       <label id="valuationLabel"></label>
   </div>
-
-
 
 }

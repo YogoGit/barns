@@ -2,6 +2,8 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import java.util.HashSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +22,10 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private int quantity;
 
     @ManyToOne
@@ -51,6 +55,12 @@ public class Animal {
 
     public void setBarn(Barn barn) {
         this.barn = barn;
+        if(barn != null){
+            if(barn.getAnimals() == null){
+                barn.setAnimals(new HashSet<Animal>());
+            }
+            barn.getAnimals().add(this);
+        }
     }
 
     public int getQuantity() {

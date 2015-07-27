@@ -1,3 +1,4 @@
+package configs;
 import configs.DataConfig;
 
 import org.springframework.context.annotation.Bean;

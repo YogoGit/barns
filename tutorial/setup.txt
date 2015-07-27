@@ -11,7 +11,7 @@ Running the node.js http server
 1. Make sure you have node.js installed on your computer.
     $ brew install node
     (OR download from https://nodejs.org/download/)
-2. Run the barnHttp.js
+2. Run the barnHttp.js from the {project.dir}/node folder
     $ node barnHttp.js
 
 Javascript Unit Testing

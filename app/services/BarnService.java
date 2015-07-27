@@ -9,7 +9,11 @@ import java.util.Set;
 
 public interface BarnService {
 
-    public Integer addBarn(BarnForm bar);
+    public Barn getBarnById(Integer id);
+
+    public Barn addBarn(BarnForm bar);
+
+    public void save(Barn barn);
 
     public Set<Barn> getAllBarns();
 

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import play.libs.F.Promise;
@@ -40,13 +41,26 @@ public class BarnServiceImpl implements BarnService {
     EntityManager em;
 
     @Override
-    public Integer addBarn(BarnForm barn) {
+    @Transactional
+    public Barn addBarn(BarnForm barn) {
         Barn b = new Barn();
         b.setName(barn.getName());
         b.setAnimals(new HashSet<Animal>());
-        em.persist(b);
+        em.merge(b);
         logger.debug("Barn with name {} and barnId {} persisted to db.", barn.getName(), b.getBarnId());
-        return b.getBarnId();
+        return b;
+    }
+
+    @Override
+    @Transactional
+    public void save(Barn barn) {
+        em.merge(barn);
+    }
+
+    @Override
+    @Transactional
+    public Barn getBarnById(Integer id){
+        return em.find(Barn.class, id);
     }
 
     @Override

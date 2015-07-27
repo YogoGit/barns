@@ -5,6 +5,9 @@ import models.Animal;
 import java.util.Set;
 
 public interface AnimalService {
+
+    public void save(Animal a);
+
     public void addAnimal(Animal a);
 
     public Set<Animal> getAllAnimals();

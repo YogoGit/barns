@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,13 +23,14 @@ public class Barn {
     @GeneratedValue
     private Integer barnId;
 
+    @Column(nullable = false)
     private String name;
 
     // Incredibly important to annotate any bi-directional relationships in Play with the
     // @JsonManagedReference for Parent and @JsonBackReference for Child (See Animal.java).
     // If you don't do this, the Jackson databinding with cause an infinite recursion
     // during JSON serialization!
-    @OneToMany(mappedBy = "barn", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "barn", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference
     private Set<Animal> animals;
 

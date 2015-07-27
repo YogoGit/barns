@@ -19,6 +19,7 @@ libraryDependencies ++= Seq(
   "org.springframework" % "spring-test" % "4.1.1.RELEASE" % "test",
   "org.hibernate" % "hibernate-entitymanager" % "4.3.6.Final",
   "com.novocode" % "junit-interface" % "0.11" % "test->default",
+  "junit" % "junit" % "4.7" % "test",
   "mysql" % "mysql-connector-java" % "5.1.35",
   "org.webjars" % "bootstrap" % "2.1.1"
 )

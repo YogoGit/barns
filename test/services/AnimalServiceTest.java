@@ -1,14 +1,13 @@
+package services;
+
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 
 import configs.AppConfig;
+import configs.TestDataConfig;
 
 import models.Animal;
 import models.Barn;
-import models.BarnForm;
-
-import services.AnimalService;
-import services.BarnService;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,17 +33,18 @@ public class AnimalServiceTest extends AbstractTransactionalJUnit4SpringContextT
         animal.setName("Donkey");
         animal.setQuantity(5);
         // Associate the animal with a Barn.
-        Integer barnId = createBarn();
-        animal.setBarn(new Barn(barnId));
-        animalService.addAnimal(animal);
+        Barn barn = createBarn();
+        animal.setBarn(barn);
+        // Saving the barn saves its animals (via cascade of OneToMany)
+        barnService.save(barn);
         assertFalse(animalService.getAllAnimals().isEmpty());
     }
 
-    public Integer createBarn() {
-        BarnForm barn = new BarnForm();
+    public Barn createBarn() {
+        Barn barn = new Barn();
         barn.setName("Big Red Barn With Animals");
-        barnService.addBarn(barn);
-        return barnService.addBarn(barn);
+        barnService.save(barn);
+        return barn;
     }
 
     @Test

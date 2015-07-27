@@ -5,6 +5,7 @@ import models.Animal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
@@ -24,6 +25,13 @@ public class AnimalServiceImpl implements AnimalService {
     EntityManager em;
 
     @Override
+    @Transactional
+    public void save(Animal a){
+        em.merge(a);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addAnimal(Animal a) {
         em.persist(a);
         logger.trace("Added animal {}", a.toString());

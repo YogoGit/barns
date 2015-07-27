@@ -1,12 +1,12 @@
+package services;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 
 import configs.AppConfig;
+import configs.TestDataConfig;
 
 import models.Barn;
 import models.BarnForm;
-
-import services.BarnService;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

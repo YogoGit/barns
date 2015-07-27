@@ -10,3 +10,5 @@
 /testdb.h2.db
 /.project
 /.classpath
+.DS_Store
+/node/reports
