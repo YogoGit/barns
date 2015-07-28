@@ -1,12 +1,10 @@
 package configs;
-import configs.DataConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.HashMap;
@@ -22,7 +20,8 @@ public class TestDataConfig extends DataConfig {
     // In test cases that use "fakeApplication()", the @ContextConfiguration is not
     // used. Therefore, pass this map to the fakeApplication call use test properties.
     public static final Map<String, String> appTestingConfMap = new HashMap<String, String>();
-    static{
+
+    static {
         appTestingConfMap.put("db.default.driver", "org.h2.Driver");
         appTestingConfMap.put("db.default.url", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
         appTestingConfMap.put("db.default.dialect", "org.hibernate.dialect.H2Dialect");

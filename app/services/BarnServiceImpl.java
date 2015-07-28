@@ -55,7 +55,7 @@ public class BarnServiceImpl implements BarnService {
     }
 
     @Override
-    public Barn getBarnById(Integer id){
+    public Barn getBarnById(Integer id) {
         return em.find(Barn.class, id);
     }
 

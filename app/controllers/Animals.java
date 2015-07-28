@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import play.data.Form;
-import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -53,7 +52,7 @@ public class Animals extends Controller {
         animal.setQuantity(formAnimal.getQuantity());
         animal.setBarn(barnWhereAnimalLives);
         animalService.addAnimal(animal);
-        return redirect(controllers.routes.Application.index());
+        return redirect(routes.Application.index());
     }
 
 }

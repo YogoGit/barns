@@ -23,5 +23,5 @@ Install & Run Jasmine (for .spec.js test cases)
     $ cd
     $ sudo npm install jasmine-node
 3. Run the tests
-    $ ~/node_modules/jasmine-node/bin/jasmine-node --verbose --junitreport {your.project.dir}/*.spec.js
+    $ ~/node_modules/jasmine-node/bin/jasmine-node --verbose --junitreport {your.project.dir}/node/*.spec.js
 

@@ -8,6 +8,7 @@ public interface AnimalService {
 
     /**
      * AddAnimal persists the animal instance to the barns db.
+     *
      * @param animal The animal to be persisted.
      * @return Primary key value auto generated upon persist.
      */
@@ -15,6 +16,7 @@ public interface AnimalService {
 
     /**
      * Get All Animals fetches all the animals in the animal table.
+     *
      * @return A SortedSet of all animals.
      */
     SortedSet<Animal> getAllAnimals();

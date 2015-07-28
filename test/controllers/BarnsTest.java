@@ -14,12 +14,9 @@ import static play.test.Helpers.running;
 import static play.test.Helpers.status;
 import static play.test.Helpers.testServer;
 
-import configs.AppConfig;
 import configs.TestDataConfig;
 
 import org.junit.Test;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 import play.libs.ws.WS;
 import play.mvc.Result;

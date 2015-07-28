@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import play.Play;
 
-import java.util.HashMap;
-
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
