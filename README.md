@@ -1,4 +1,12 @@
-Setting up the MySQL DB:
+Barn Management System
+
+*by Richard Lewan*
+
+A sample Play application that allows a user to enter Barns and add Animals to their Barns. Connects to a node.js webservice that makes a valuation appraisal of the user's collection of Barns. Also uses Jasmine testing framework to unit test Javascript code.
+
+To setup and run the app:
+
+Set up the MySQL DB:
 ------------------------
 CREATE DATABASE barns;
 CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
@@ -14,7 +22,8 @@ Running the node.js http server
 2. Run the barnHttp.js from the {project.dir}/node folder
     $ node barnHttp.js
 
-Javascript Unit Testing
+Javascript Unit Testing:
+
 Install & Run Jasmine (for .spec.js test cases)
 -----------------------------------------
 1. Install
@@ -24,4 +33,3 @@ Install & Run Jasmine (for .spec.js test cases)
     $ sudo npm install jasmine-node
 3. Run the tests
     $ ~/node_modules/jasmine-node/bin/jasmine-node --verbose --junitreport {your.project.dir}/node/*.spec.js
-
