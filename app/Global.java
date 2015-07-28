@@ -3,6 +3,7 @@ import configs.DataConfig;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -29,6 +30,7 @@ public class Global extends GlobalSettings {
     @SuppressWarnings("rawtypes")
     @Override
     public Action onRequest(Http.Request request, java.lang.reflect.Method actionMethod) {
+        MDC.put("method", actionMethod.toString().split(" ")[2]);
         logger.info("Http request {} has calling method {} ", request, actionMethod.toString().split(" ")[2]);
         return super.onRequest(request, actionMethod);
     }
@@ -41,6 +43,7 @@ public class Global extends GlobalSettings {
     @Override
     public <A> A getControllerInstance(Class<A> clazz) {
         return ctx.getBean(clazz);
+        //return (A)clazz.newInstance();
     }
 
 }

@@ -49,9 +49,4 @@ public class Animals extends Controller {
         return redirect(controllers.routes.Application.index());
     }
 
-    public Result listAnimals() {
-        Set<Animal> animals = animalService.getAllAnimals();
-        logger.trace("listAnimals() called. list = {}", animals.toString());
-        return ok(Json.toJson(animals));
-    }
 }

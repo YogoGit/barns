@@ -15,7 +15,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-import java.util.Set;
+import java.util.SortedSet;
 
 @org.springframework.stereotype.Controller
 public class Barns extends Controller {
@@ -37,11 +37,11 @@ public class Barns extends Controller {
         }
         BarnForm barn = form.get();
         barnService.addBarn(barn);
-        return play.mvc.Controller.redirect(controllers.routes.Application.index());
+        return play.mvc.Controller.redirect(routes.Application.index());
     }
 
     public Result listBarns() {
-        Set<Barn> barns = barnService.getAllBarns();
+        SortedSet<Barn> barns = barnService.getAllBarns();
         logger.trace("listBarns() List of all barns: {}", barns.toString());
         return play.mvc.Controller.ok(Json.toJson(barns));
     }

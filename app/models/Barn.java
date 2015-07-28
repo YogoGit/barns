@@ -1,8 +1,11 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.SortNatural;
 
-import java.util.Set;
+import java.util.Comparator;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -12,11 +15,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "barn")
-public class Barn {
+public class Barn implements Comparable<Barn> {
 
     @Id
     @Column(name = "barn_id")
@@ -26,17 +30,22 @@ public class Barn {
     @Column(nullable = false)
     private String name;
 
-    // Incredibly important to annotate any bi-directional relationships in Play with the
+    // Important to annotate any bi-directional relationships in Play with the
     // @JsonManagedReference for Parent and @JsonBackReference for Child (See Animal.java).
     // If you don't do this, the Jackson databinding with cause an infinite recursion
-    // during JSON serialization!
+    // during JSON serialization.
     @OneToMany(mappedBy = "barn", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference
-    private Set<Animal> animals;
+    @OrderBy("name ASC")
+    @SortNatural
+    private SortedSet<Animal> animals;
 
-    public Barn() {}
+    public Barn() {
+        animals = new TreeSet<>(Comparator.comparing(Animal::getName));
+    }
 
     public Barn(Integer id) {
+        this();
         this.barnId = id;
     }
 
@@ -57,20 +66,16 @@ public class Barn {
     }
 
     public String getAnimalsAsString() {
-        if (animals == null || animals.size() == 0) {
-            return "";
-        }
-
         return animals.stream()
                       .map(Animal::toString)
                       .collect(Collectors.joining(", "));
     }
 
-    public Set<Animal> getAnimals() {
+    public SortedSet<Animal> getAnimals() {
         return animals;
     }
 
-    public void setAnimals(Set<Animal> animals) {
+    public void setAnimals(SortedSet<Animal> animals) {
         this.animals = animals;
     }
 
@@ -87,6 +92,11 @@ public class Barn {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Barn o) {
+        return this.name.compareTo(o.getName());
     }
 
 }

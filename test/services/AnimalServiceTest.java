@@ -1,20 +1,18 @@
 package services;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import configs.AppConfig;
 import configs.TestDataConfig;
 
 import models.Animal;
 import models.Barn;
+import models.BarnForm;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-
-import java.util.Set;
 
 @ContextConfiguration(classes = {
     AppConfig.class, TestDataConfig.class
@@ -37,21 +35,28 @@ public class AnimalServiceTest extends AbstractTransactionalJUnit4SpringContextT
         animal.setBarn(barn);
         // Saving the barn saves its animals (via cascade of OneToMany)
         barnService.save(barn);
-        assertFalse(animalService.getAllAnimals().isEmpty());
+        assertTrue(animalService.getAllAnimals().size() > 0);
     }
 
-    public Barn createBarn() {
-        Barn barn = new Barn();
-        barn.setName("Big Red Barn With Animals");
-        barnService.save(barn);
-        return barn;
+    // Helper method
+    private Barn createBarn() {
+        BarnForm barnForm = new BarnForm();
+        barnForm.setName("Big Red Barn With Animals");
+        Barn b = barnService.addBarn(barnForm);
+        return b;
     }
 
     @Test
-    public void getAnimals() {
-        createAnimal();
-        Set<Animal> animals = animalService.getAllAnimals();
-        assertThat(animals.size()).isEqualTo(1);
+    public void testNullAndNamelessAnimal(){
+        Animal animal = new Animal();
+        boolean namelessAnimalThrewException = false;
+        try{
+            animalService.addAnimal(animal);
+        } catch (javax.persistence.PersistenceException e){
+            namelessAnimalThrewException = true;
+        }
+        assertTrue(namelessAnimalThrewException);
+
     }
 
 }

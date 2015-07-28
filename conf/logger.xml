@@ -8,13 +8,16 @@
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-        <pattern>%date - [%level] - from %logger in %thread %n%message%n%xException%n</pattern>
+        <pattern>%date - [%level] - from %logger in %thread %n%message%n%X{method}%n%xException%n</pattern>
     </encoder>
   </appender>
 
   <logger name="play" level="INFO" />
   <logger name="application" level="DEBUG" />
-  <logger name="controllers.Application" level="WARN" />
+  <logger name="controllers.Application" level="DEBUG" />
+  <logger name="services" level="DEBUG" />
+  <logger name="org.hibernate" level="WARN" />
+  <logger name="org.springframework" level="WARN" />
 
   <root level="INFO">
     <appender-ref ref="STDOUT" />

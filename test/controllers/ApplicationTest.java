@@ -1,4 +1,5 @@
 package controllers;
+
 import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.contentAsString;
 import static play.test.Helpers.contentType;
@@ -9,9 +10,8 @@ import org.junit.Test;
 
 import play.twirl.api.Html;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 
-// todo: not using the right spring context when using fakeApplication()
 public class ApplicationTest {
     protected static final String APP_NAME = "Barn Management System";
 
@@ -20,7 +20,7 @@ public class ApplicationTest {
         running(fakeApplication(), new Runnable() {
             public void run() {
                 // Form<Barn> form = Form.form(Barn.class);
-                Html html = views.html.index.render(new HashSet(), 1L);
+                Html html = views.html.index.render(new TreeSet(), 1L);
                 assertThat(contentType(html)).isEqualTo("text/html");
                 assertThat(contentAsString(html)).contains(APP_NAME);
             }

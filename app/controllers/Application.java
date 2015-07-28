@@ -13,7 +13,8 @@ import play.libs.F.Promise;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-import java.util.Set;
+import java.util.Collections;
+import java.util.SortedSet;
 
 @org.springframework.stereotype.Controller
 public class Application extends Controller {
@@ -30,7 +31,8 @@ public class Application extends Controller {
      * @return Result of the index render, given as Promise<Result> due to async.
      */
     public Promise<Result> index() {
-        Set<Barn> barns = barnService.getAllBarns();
+        SortedSet<Barn> barns = barnService.getAllBarns();
+        logger.debug(barns.toString());
         Promise<Result> promise = barnService.getValuation(barns).map(value -> {
             logger.info("Barn Valuation is {}", value);
             return ok(index.render(barns, value));

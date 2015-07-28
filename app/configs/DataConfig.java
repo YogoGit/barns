@@ -29,7 +29,7 @@ public class DataConfig {
     @Bean
     public EntityManagerFactory entityManagerFactory() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setShowSql(true);
+        vendorAdapter.setShowSql(false);
         vendorAdapter.setGenerateDdl(true);
         // Grab the correct DB dialect from the application.conf
         vendorAdapter.setDatabasePlatform(Play.application().configuration().getString("db.default.dialect"));
@@ -37,11 +37,6 @@ public class DataConfig {
         entityManagerFactory.setPackagesToScan("models");
         entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
         entityManagerFactory.setDataSource(dataSource());
-        entityManagerFactory.setJpaPropertyMap(new HashMap<String, String>() {
-            {
-                put("hibernate.hbm2ddl.auto", "update");
-            }
-        });
         entityManagerFactory.afterPropertiesSet();
         return entityManagerFactory.getObject();
     }

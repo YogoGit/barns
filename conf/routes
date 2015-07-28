@@ -9,7 +9,6 @@ GET     /barns/all                  @controllers.Barns.listBarns
 POST    /barns                      @controllers.Barns.addBarn
 GET     /animals/barns/all          @controllers.Barns.listBarns
 GET     /animals                    @controllers.Animals.index
-GET     /animals/all                @controllers.Animals.listAnimals
 POST    /animal                     @controllers.Animals.addAnimal
 
 # Map static resources from the /public folder to the /assets URL path

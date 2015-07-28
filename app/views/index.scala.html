@@ -1,4 +1,4 @@
-@(barns: Set[Barn], totalValue: Long)
+@(barns: SortedSet[Barn], totalValue: Long)
 @implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
 
 @main {
@@ -10,23 +10,23 @@
           <th>Animals</th>
         </tr>
 
-    @for(barn <- barns) {
+    @for(barn <- barns.iterator) {
         <tr>
-            <td> @barn.getName() </td>
-            <td> @barn.getAnimalsAsString() </td>
-          </tr>
+            <td>@barn.getName()</td>
+            <td>@barn.getAnimalsAsString()</td>
+        </tr>
     }
 
-      </table>
+     </table>
 
-      <script type="text/javascript">
-        // Correctly format the barn valuation number as money.
-        $(document).ready(function() {
-           var totVal = new Intl.NumberFormat().format(@totalValue);
-           $("#valuationLabel").text("Total Valuation of all Barns: $" + totVal + ".00");
-        });
-      </script>
-      <label id="valuationLabel"></label>
+     <script type="text/javascript">
+       // Correctly format the barn valuation number as money.
+       $(document).ready(function() {
+          var totVal = new Intl.NumberFormat().format(@totalValue);
+          $("#valuationLabel").text("Total Valuation of all Barns: $" + totVal + ".00");
+       });
+     </script>
+     <label id="valuationLabel"></label>
   </div>
 
 }

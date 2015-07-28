@@ -2,18 +2,21 @@ package services;
 
 import models.Animal;
 
-import java.util.Set;
+import java.util.SortedSet;
 
 public interface AnimalService {
 
-    public void save(Animal a);
+    /**
+     * AddAnimal persists the animal instance to the barns db.
+     * @param animal The animal to be persisted.
+     * @return Primary key value auto generated upon persist.
+     */
+    Integer addAnimal(Animal animal);
 
-    public void addAnimal(Animal a);
-
-    public Set<Animal> getAllAnimals();
-
-    public void updateAnimal(Animal a);
-
-    public void deleteAnimal(Animal a);
+    /**
+     * Get All Animals fetches all the animals in the animal table.
+     * @return A SortedSet of all animals.
+     */
+    SortedSet<Animal> getAllAnimals();
 
 }
