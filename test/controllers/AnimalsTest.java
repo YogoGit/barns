@@ -27,8 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class AnimalsTest {
 
     @Test
-    public void testAddAnimal() {
-
+    public void testAddAnimalNoBarn() {
         running(fakeApplication(TestDataConfig.appTestingConfMap), new Runnable() {
             public void run() {
                 Map<String, String> formParams = new HashMap<String, String>();
@@ -37,14 +36,14 @@ public class AnimalsTest {
                 FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);
 
                 Result result = callAction(routes.ref.Animals.addAnimal(), fakeRequest);
-                assertThat(status(result)).isNotNull();
+                assertThat(status(result)).isEqualTo(400);
+                assertThat(contentAsString(result)).contains("You must specify a barn first.");
             }
         });
     }
 
     @Test
     public void testAddAnimalNoNameNoQuantity() {
-
         running(fakeApplication(TestDataConfig.appTestingConfMap), new Runnable() {
             public void run() {
                 Map<String, String> formParams = new HashMap<String, String>();
