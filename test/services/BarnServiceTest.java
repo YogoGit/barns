@@ -1,4 +1,5 @@
 package services;
+
 import static org.fest.assertions.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -55,12 +56,12 @@ public class BarnServiceTest extends AbstractTransactionalJUnit4SpringContextTes
     }
 
     @Test
-    public void testSaveNamelessBarn(){
+    public void testSaveNamelessBarn() {
         BarnForm barnForm = new BarnForm();
         boolean namelessBarnThrewException = false;
-        try{
+        try {
             barnService.addBarn(barnForm);
-        } catch (javax.persistence.PersistenceException e){
+        } catch (javax.persistence.PersistenceException e) {
             namelessBarnThrewException = true;
         }
         assertTrue(namelessBarnThrewException);

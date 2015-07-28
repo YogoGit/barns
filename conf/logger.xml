@@ -13,8 +13,7 @@
   </appender>
 
   <logger name="play" level="INFO" />
-  <logger name="application" level="DEBUG" />
-  <logger name="controllers.Application" level="DEBUG" />
+  <logger name="controllers" level="DEBUG" />
   <logger name="services" level="DEBUG" />
   <logger name="org.hibernate" level="WARN" />
   <logger name="org.springframework" level="WARN" />

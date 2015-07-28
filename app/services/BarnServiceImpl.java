@@ -13,7 +13,6 @@ import play.libs.F.Promise;
 import play.libs.Json;
 import play.libs.ws.WS;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
@@ -65,7 +64,7 @@ public class BarnServiceImpl implements BarnService {
         CriteriaQuery<Barn> c = em.getCriteriaBuilder().createQuery(Barn.class);
         c.from(Barn.class);
         List<Barn> barns = em.createQuery(c).getResultList();
-        SortedSet barnsSet = new TreeSet<Barn>(barns);
+        SortedSet<Barn> barnsSet = new TreeSet<Barn>(barns);
         return barnsSet;
     }
 

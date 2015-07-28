@@ -6,9 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -16,6 +18,18 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 public class TestDataConfig extends DataConfig {
+
+    // In test cases that use "fakeApplication()", the @ContextConfiguration is not
+    // used. Therefore, pass this map to the fakeApplication call use test properties.
+    public static final Map<String, String> appTestingConfMap = new HashMap<String, String>();
+    static{
+        appTestingConfMap.put("db.default.driver", "org.h2.Driver");
+        appTestingConfMap.put("db.default.url", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
+        appTestingConfMap.put("db.default.dialect", "org.hibernate.dialect.H2Dialect");
+        appTestingConfMap.put("db.default.user", "");
+        appTestingConfMap.put("db.default.password", "");
+
+    }
 
     @Bean
     @Override
@@ -27,11 +41,6 @@ public class TestDataConfig extends DataConfig {
         entityManagerFactory.setPackagesToScan("models");
         entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
         entityManagerFactory.setDataSource(dataSource());
-        entityManagerFactory.setJpaPropertyMap(new HashMap<String, String>() {
-            {
-                put("hibernate.hbm2ddl.auto", "create-drop");
-            }
-        });
         entityManagerFactory.afterPropertiesSet();
         return entityManagerFactory.getObject();
     }

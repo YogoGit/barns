@@ -1,4 +1,5 @@
 package controllers;
+
 import static org.fest.assertions.Assertions.assertThat;
 import static play.mvc.Http.Status.OK;
 import static play.mvc.Http.Status.SEE_OTHER;
@@ -13,7 +14,12 @@ import static play.test.Helpers.running;
 import static play.test.Helpers.status;
 import static play.test.Helpers.testServer;
 
+import configs.AppConfig;
+import configs.TestDataConfig;
+
 import org.junit.Test;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 import play.libs.ws.WS;
 import play.mvc.Result;
@@ -26,32 +32,48 @@ import java.util.concurrent.TimeUnit;
 public class BarnsTest {
 
     @Test
-    public void callAddBarn() {
-        running(fakeApplication(), new Runnable() {
+    public void testAddBarn() {
+        running(fakeApplication(TestDataConfig.appTestingConfMap), new Runnable() {
             public void run() {
                 Map<String, String> formParams = new HashMap<String, String>();
                 formParams.put("name", "RedBarn1");
 
                 FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);
 
-                Result result = callAction(controllers.routes.ref.Barns.addBarn(), fakeRequest);
+                Result result = callAction(routes.ref.Barns.addBarn(), fakeRequest);
                 assertThat(status(result)).isEqualTo(SEE_OTHER);
             }
         });
     }
 
     @Test
-    public void callListBarns() {
-        running(fakeApplication(), new Runnable() {
+    public void testAddBarnNoName() {
+        running(fakeApplication(TestDataConfig.appTestingConfMap), new Runnable() {
+            public void run() {
+                Map<String, String> formParams = new HashMap<String, String>();
+                formParams.put("name", "");
+
+                FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);
+
+                Result result = callAction(routes.ref.Barns.addBarn(), fakeRequest);
+                assertThat(status(result)).isEqualTo(400);
+                assertThat(contentAsString(result)).contains("Barn must have a name.");
+            }
+        });
+    }
+
+    @Test
+    public void testListBarns() {
+        running(fakeApplication(TestDataConfig.appTestingConfMap), new Runnable() {
             public void run() {
                 Map<String, String> formParams = new HashMap<String, String>();
                 formParams.put("name", "RedBarn1");
 
                 FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);
+                // Add a barn before listing them
+                callAction(routes.ref.Barns.addBarn(), fakeRequest);
 
-                callAction(controllers.routes.ref.Barns.addBarn(), fakeRequest);
-
-                Result result = callAction(controllers.routes.ref.Barns.listBarns());
+                Result result = callAction(routes.ref.Barns.listBarns());
                 assertThat(status(result)).isEqualTo(OK);
                 assertThat(contentType(result)).isEqualTo("application/json");
                 assertThat(contentAsString(result)).startsWith("[");
@@ -62,7 +84,7 @@ public class BarnsTest {
 
     @Test
     public void barnsRoute() {
-        running(fakeApplication(), new Runnable() {
+        running(fakeApplication(TestDataConfig.appTestingConfMap), new Runnable() {
             public void run() {
                 Result result = route(fakeRequest(GET, "/barns"));
                 assertThat(result).isNotNull();

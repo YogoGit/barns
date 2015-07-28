@@ -5,6 +5,14 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+/**
+ * BarnAnimalModelTest avoids testing simple getters and setters,
+ * and instead tests Barn's helper method that aggregates a barn's
+ * animals' names into a comma-delimited string.
+ *
+ * @author rlewan
+ *
+ */
 public class BarnAnimalModelTest {
 
     @Test

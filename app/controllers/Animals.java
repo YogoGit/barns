@@ -40,10 +40,17 @@ public class Animals extends Controller {
             return badRequest(views.html.animals.render(form));
         }
         AnimalForm formAnimal = form.get();
+        Barn barnWhereAnimalLives = barnService.getBarnById(formAnimal.getBarnId());
+        Set<Animal> existingAnimals = barnWhereAnimalLives.getAnimals();
+        if(existingAnimals.stream().filter(animal -> animal.getName().equals(formAnimal.getName())).count() > 0){
+            logger.debug("addAnimal attempted to add non-unique animal name");
+            form.reject("Animal name must be unique. Selected Barn already has " + formAnimal.getName());
+            return badRequest(views.html.animals.render(form));
+        }
+
         Animal animal = new Animal();
         animal.setName(formAnimal.getName());
         animal.setQuantity(formAnimal.getQuantity());
-        Barn barnWhereAnimalLives = barnService.getBarnById(formAnimal.getBarnId());
         animal.setBarn(barnWhereAnimalLives);
         animalService.addAnimal(animal);
         return redirect(controllers.routes.Application.index());

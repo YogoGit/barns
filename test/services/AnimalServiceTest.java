@@ -29,7 +29,7 @@ public class AnimalServiceTest extends AbstractTransactionalJUnit4SpringContextT
     public void createAnimal() {
         Animal animal = new Animal();
         animal.setName("Donkey");
-        animal.setQuantity(5);
+        animal.setQuantity(99);
         // Associate the animal with a Barn.
         Barn barn = createBarn();
         animal.setBarn(barn);
@@ -47,12 +47,12 @@ public class AnimalServiceTest extends AbstractTransactionalJUnit4SpringContextT
     }
 
     @Test
-    public void testNullAndNamelessAnimal(){
+    public void testNullAndNamelessAnimal() {
         Animal animal = new Animal();
         boolean namelessAnimalThrewException = false;
-        try{
+        try {
             animalService.addAnimal(animal);
-        } catch (javax.persistence.PersistenceException e){
+        } catch (javax.persistence.PersistenceException e) {
             namelessAnimalThrewException = true;
         }
         assertTrue(namelessAnimalThrewException);

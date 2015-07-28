@@ -15,6 +15,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import java.util.Set;
 import java.util.SortedSet;
 
 @org.springframework.stereotype.Controller
@@ -26,24 +27,33 @@ public class Barns extends Controller {
     private BarnService barnService;
 
     public Result index() {
-        return play.mvc.Controller.ok(barns.render(Form.form(BarnForm.class)));
+        return ok(barns.render(Form.form(BarnForm.class)));
     }
 
     public Result addBarn() {
         Form<BarnForm> form = Form.form(BarnForm.class).bindFromRequest();
         if (form.hasErrors()) {
             logger.debug("addBarn form submitted with errors.");
-            return play.mvc.Controller.badRequest(barns.render(form));
+            return badRequest(barns.render(form));
         }
-        BarnForm barn = form.get();
-        barnService.addBarn(barn);
-        return play.mvc.Controller.redirect(routes.Application.index());
+
+        BarnForm barnForm = form.get();
+        // Verify barn name is unique.
+        Set<Barn> existingBarns = barnService.getAllBarns();
+        if (existingBarns.stream().filter(barn -> barn.getName().equals(barnForm.getName())).count() > 0) {
+            logger.debug("addBarn form submitted with non-unique barn name");
+            form.reject("Barn name must be unique.");
+            return badRequest(barns.render(form));
+        }
+
+        barnService.addBarn(barnForm);
+        return redirect(routes.Application.index());
     }
 
     public Result listBarns() {
         SortedSet<Barn> barns = barnService.getAllBarns();
         logger.trace("listBarns() List of all barns: {}", barns.toString());
-        return play.mvc.Controller.ok(Json.toJson(barns));
+        return ok(Json.toJson(barns));
     }
 
 }
