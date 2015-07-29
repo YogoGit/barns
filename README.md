@@ -23,6 +23,8 @@ Running the node.js http server
 2. Run the barnHttp.js from the {project.dir}/node folder
  - $ node barnHttp.js
 
+
+
 Javascript Unit Testing:
 
 Install & Run Jasmine (for .spec.js test cases)
@@ -33,4 +35,4 @@ Install & Run Jasmine (for .spec.js test cases)
  - $ cd
  - $ sudo npm install jasmine-node
 3. Run the tests
- - $ ~/node_modules/jasmine-node/bin/jasmine-node --verbose --junitreport {your.project.dir}/node/*.spec.js
+ - $ ~/node_modules/jasmine-node/bin/jasmine-node --verbose --junitreport {project.dir}/node/*.spec.js
