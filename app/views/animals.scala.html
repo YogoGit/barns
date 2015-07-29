@@ -1,4 +1,4 @@
-@(form: play.data.Form[AnimalForm])
+@(form: play.data.Form[AnimalForm], barnsMap: Seq[(String, String)])
 
 @main {
 
@@ -14,7 +14,8 @@
 
     @helper.form(action = routes.Animals.addAnimal()) {
         @helper.select(
-                form("barnId"), Seq.empty,
+                form("barnId"),
+                options = barnsMap,
                 'id -> "barnsSelect", '_showConstraints -> false, '_label -> "Select a Barn:")
         @helper.inputText(form("name"), '_label -> "Animal Name", 'placeholder -> "ie. Donkey, Goat, etc", 'id -> "nameInput")
         @helper.inputText(form("quantity"), '_label -> "Quantity (any number > 0)", 'id -> "quantityInput")

@@ -5,16 +5,8 @@ validAlpha += validAlpha.toUpperCase();
 
 $(document).ready(function() {
 
-  $('input[id=nameInput]').focus();
-
-  // First thing we do when the page is ready is make a GET call to populate the Barns
-  // in the barns <select> list.
-    $.get("barns/all", function(data) {
-        $.each(data, function(item) {
-          $("#barnsSelect").append($("<option />").val(this.barnId).text(this.name));
-        });
-
-    });
+    // Put focus in the first input field.
+    $('input[id=nameInput]').focus();
 
     // The following methods enforce appropriate input for the name field (alpha only)
     // and for the quantity field (numeric only). A focusout listener is also used in

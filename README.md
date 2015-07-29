@@ -6,6 +6,7 @@ Barn Management System
 A sample Play application that allows a user to enter Barns and add Animals to their Barns. Connects to a node.js webservice that makes a valuation appraisal of the user's collection of Barns. Also uses Jasmine testing framework to unit test Javascript code.
 
 You must setup the DB and run the node.js http server in order to use the app.
+JUnit also assumes the node http server is running on 127.0.0.1:9055
 
 Set up the MySQL DB:
 ------------------------
