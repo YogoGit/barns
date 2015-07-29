@@ -14,21 +14,6 @@ $(document).ready(function() {
           $("#barnsSelect").append($("<option />").val(this.barnId).text(this.name));
         });
 
-        // Determine selected barnId immediately, since the <select> will default to the 0th
-        // item in the list (ie. not picked up by the change function defined below.)
-        determineSelectedBarnId();
-    });
-
-    // Grabs the barnId from the selected <option> in the <select> list.
-    // Then sets that value to the invisible input field used by the AnimalForm.
-    function determineSelectedBarnId() {
-        selectedBarn = $("#barnsSelect option:selected").val();
-        $("#barnIdInput").val(selectedBarn);
-    }
-
-    // Always know which Barn ID is selected.
-    $("#barnsSelect").change(function() {
-      determineSelectedBarnId();
     });
 
     // The following methods enforce appropriate input for the name field (alpha only)
