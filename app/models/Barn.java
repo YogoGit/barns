@@ -27,13 +27,10 @@ public class Barn implements Comparable<Barn> {
     @GeneratedValue
     private Integer barnId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    // Important to annotate any bi-directional relationships in Play with the
-    // @JsonManagedReference for Parent and @JsonBackReference for Child (See Animal.java).
-    // If you don't do this, the Jackson databinding with cause an infinite recursion
-    // during JSON serialization.
+    // Important to annotate any bi-directional relationships in Play with @JsonManagedReference
     @OneToMany(mappedBy = "barn", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JsonManagedReference
     @OrderBy("name ASC")

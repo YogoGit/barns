@@ -41,6 +41,10 @@ public class BarnServiceImpl implements BarnService {
     @Override
     @Transactional
     public Barn addBarn(BarnForm barn) {
+        if(barn == null) {
+            throw new IllegalArgumentException();
+        }
+
         Barn b = new Barn();
         b.setName(barn.getName());
         b = em.merge(b);

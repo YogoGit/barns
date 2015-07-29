@@ -11,6 +11,7 @@ public interface AnimalService {
      *
      * @param animal The animal to be persisted.
      * @return Primary key value auto generated upon persist.
+     * @throws IllegalArgumentException thrown when a null or nameless or duplicate animal is passed in.
      */
     Integer addAnimal(Animal animal);
 

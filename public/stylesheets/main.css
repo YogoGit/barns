@@ -7,3 +7,12 @@ br
     display: block !important;
     margin:25px;
 }
+.vertgap
+{
+    display: inline-block;
+    height: 150px;
+}
+.smalltext
+{
+    font-size:small;
+}

@@ -60,6 +60,21 @@ public class AnimalsTest {
     }
 
     @Test
+    public void testAddAnimalNoParams() {
+        running(fakeApplication(TestDataConfig.appTestingConfMap), new Runnable() {
+            public void run() {
+                Map<String, String> formParams = new HashMap<String, String>();
+                FakeRequest fakeRequest = fakeRequest().withFormUrlEncodedBody(formParams);
+
+                Result result = callAction(routes.ref.Animals.addAnimal(), fakeRequest);
+                assertThat(status(result)).isEqualTo(400);
+                assertThat(contentAsString(result)).contains("You must enter an animal name.");
+                assertThat(contentAsString(result)).contains("You must enter a quantity.");
+            }
+        });
+    }
+
+    @Test
     public void testAnimalsRoute() {
         running(fakeApplication(TestDataConfig.appTestingConfMap), new Runnable() {
             public void run() {

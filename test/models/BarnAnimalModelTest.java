@@ -24,11 +24,13 @@ public class BarnAnimalModelTest {
         dog.setName("dog");
         dog.setQuantity(1);
         dog.setBarn(barn);
+        barn.getAnimals().add(dog);
 
         Animal cow = new Animal();
         cow.setName("cow");
         cow.setQuantity(2);
         cow.setBarn(barn);
+        barn.getAnimals().add(cow);
 
         // Sorted by natural ordering. Cow should come before Dog (alphabetically by name)
         assertTrue(barn.getAnimalsAsString().equals("cow(2), dog(1)"));

@@ -27,7 +27,6 @@ public class TestDataConfig extends DataConfig {
         appTestingConfMap.put("db.default.dialect", "org.hibernate.dialect.H2Dialect");
         appTestingConfMap.put("db.default.user", "");
         appTestingConfMap.put("db.default.password", "");
-
     }
 
     @Bean

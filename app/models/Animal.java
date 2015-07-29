@@ -50,11 +50,12 @@ public class Animal implements Comparable<Animal> {
         return barn;
     }
 
+    /**
+     *
+     * @param barn The barn where this animal lives.
+     */
     public void setBarn(Barn barn) {
         this.barn = barn;
-        if (barn != null) {
-            barn.getAnimals().add(this);
-        }
     }
 
     public int getQuantity() {

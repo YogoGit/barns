@@ -29,7 +29,6 @@ public class ApplicationTest {
     public void indexTemplate() {
         running(fakeApplication(TestDataConfig.appTestingConfMap), new Runnable() {
             public void run() {
-                // Form<Barn> form = Form.form(Barn.class);
                 Html html = views.html.index.render(new TreeSet(), 1L);
                 assertThat(contentType(html)).isEqualTo("text/html");
                 assertThat(contentAsString(html)).contains(APP_NAME);
