@@ -9,11 +9,11 @@ You must setup the DB and run the node.js http server in order to use the app.
 
 Set up the MySQL DB:
 ------------------------
-CREATE DATABASE barns;
-CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
-CREATE USER 'test'@'%' IDENTIFIED BY 'test';
-GRANT ALL PRIVILEGES ON barns.* TO 'test'@'localhost' WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON barns.* TO 'test'@'%' WITH GRANT OPTION;
+ - CREATE DATABASE barns;
+ - CREATE USER 'test'@'localhost' IDENTIFIED BY 'test';
+ - CREATE USER 'test'@'%' IDENTIFIED BY 'test';
+ - GRANT ALL PRIVILEGES ON barns.* TO 'test'@'localhost' WITH GRANT OPTION;
+ - GRANT ALL PRIVILEGES ON barns.* TO 'test'@'%' WITH GRANT OPTION;
 
 Running the node.js http server
 -------------------------------
